@@ -20,5 +20,17 @@ def checkerboard_3(x, y):
     # times = int(times)
     # return render_template("index.html", times = times, color = color)
 
+@app.route('/<int:x>/<int:y>/<color0>/<color1>')
+def generate_colorboard(x, y, color0, color1):
+    funkycolors = []
+
+    for j in range (0, y):
+        temp = []
+        for i in range(0, x):
+            temp.append((i + j) % 2)
+        funkycolors.append(temp)
+    return render_template("checkerboard.html", funkycolors = funkycolors, color0 = color0, color1 = color1)
+    # times = int(times)
+
 if __name__=="__main__":
     app.run(debug=True)
